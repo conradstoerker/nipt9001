@@ -11,7 +11,7 @@ FROM centos:7
 MAINTAINER conrad stoerker
 
 ENV STARTFILE https://raw.githubusercontent.com/conradstoerker/nipt9001/master/start.sh
-ENV AUTOFILE https://raw.githubusercontent.com/conradstoerker/nipt-9001/master/automate_nipt9001.sh
+ENV AUTOFILE https://raw.githubusercontent.com/conradstoerker/nipt9001/master/automate_nipt9001.sh
 ENV FLOWZIP workflow_NIPT9001.tar.gz
 
 # Creating directories identical to the host, but only the ones we need
