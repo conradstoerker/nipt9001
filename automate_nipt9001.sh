@@ -9,9 +9,9 @@ sudo getenforce
 
 #SCRATCH='/mnt/scratch'
 
-FLOWPATH='/mnt/scratch/devel/'
+FLOWPATH='/mnt/scratch/devel/NIPT9001'
 DATANAME='150423_COUNT_0015_AC6V7GANXX'
-DATAPATH='/mnt/production_storage/runs/hiseq/${DATANAME}'
+DATAPATH='/mnt/production_storage/runs/hiseq/150423_COUNT_0015_AC6V7GANXX'
 INPUTPATH='/mnt/scratch/data/'
 OUTPUTPATH='/mnt/scratch/results/'
 LOGPATH='/mnt/production_storage/workflows/docker'
@@ -35,12 +35,12 @@ sudo service docker start
 
 #Needs to specify the number of cores and memory available, use -m [somenum] --cpuset="num1,num2,num3-num5"
 echo running $IMGNAME...
-sudo docker run --name ${CNAME} -v $INPUTPATH:$INPUTPATH  -v $OUTPUTPATH:$OUTPUTPATH -v $FLOWPATH:$FLOWPATH -v $DAT$
+sudo docker run --name ${CNAME} -d --cpuset-cpus="0-5" -v $INPUTPATH:$INPUTPATH  -v $OUTPUTPATH:$OUTPUTPATH -v $FLOWPATH:$FLOWPATH -v $DATAPATH:$DATAPATH -v $LOGPATH:$LOGPATH $IMGNAME
 
 
 #echo removing the container and exiting...
 #sudo docker rm -f $CNAME
 
-#echo Enforcing selinux
+echo Checking selinux
 #sudo setenforce 1
 sudo getenforce
