@@ -18,6 +18,7 @@ ENV FLOWZIP workflow_NIPT9001.tar.gz
 RUN mkdir /mnt/scratch
 RUN mkdir /mnt/scratch/data
 RUN mkdir /mnt/scratch/devel
+RUN mkdir /mnt/scratch/devel/NIPT9001
 RUN mkdir /mnt/scratch/results
 
 RUN mkdir /mnt/production_storage
@@ -31,7 +32,7 @@ RUN mkdir /mnt/production_storage/workflows
 RUN mkdir /mnt/production_storage/workflows/docker
 
 VOLUME /mnt/scratch/data
-VOLUME /mnt/scratch/devel
+VOLUME /mnt/scratch/devel/NIPT9001
 VOLUME /mnt/scratch/results
 VOLUME /mnt/production_storage/runs/hiseq/150423_COUNT_0015_AC6V7GANXX
 #VOLUME /mnt/production_storage/rnd/results/Docker_test
@@ -41,8 +42,8 @@ VOLUME /mnt/production_storage/workflows/docker
 RUN yum -y update
 
 # Install tools
-#RUN yum groupinstall -y development
 RUN yum install -y  postgresql-devel telnet perl java-1.8.0-openjdk-devel git
+RUN ln -s /mnt/scratch/devel/NIPT9001 /mnt/scratch/devel/progenity_analysis-1.0
 
 # Download the start.sh file
 ADD ${STARTFILE} /mnt/scratch/
