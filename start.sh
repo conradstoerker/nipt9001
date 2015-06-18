@@ -5,6 +5,7 @@ RUNFOLDERPATH='${DATALOC}'
 DATETAG='$(date + "%Y%m%d")'
 DOCKERFLOW='/mnt/scratch/devel/NIPT9001'
 
+#ln /mnt/scratch/devel/NIPT9001 /mnt/scratch/devel/progenity_analysis-1.0
 cp /mnt/scratch/devel/NIPT9001/echelon_src/2015-06-06WholeChr/*.pm /usr/lib64/perl5
 PERL5LIB=/mnt/scratch/devel/NIPT9001/dependencies/bcl2fastq/lib/bcl2fastq-1.8.3/perl:$PERL5LIB; export PERL5LIB
 
