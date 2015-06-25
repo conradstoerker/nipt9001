@@ -48,13 +48,14 @@ RUN yum install -y postgresql-devel telnet perl java-1.8.0-openjdk-devel git pyt
 RUN yum install -y gnuplot ImageMagick ghostscript libxslt libxslt-devel libxml2 libxml2-devel
 RUN yum install -y ncurses ncurses-devel gcc libtiff libtiff-devel bzip2 bzip2-devel zlib zlib-devel
 RUN yum install -y perl-XML-Dumper perl-XML-Grove perl-XML-LibXML perl-XML-LibXML-Common perl-XML-Twig
-Run yum install -y perl-XML-LibXML-Common perl-XML-NamespaceSupport perl-XML-Parser perl-XML-SAX
-Run yum install -y "perl(Compress::Zlib)" "perl(Archive::Tar)"
-Run yum install -y perl-XML-Simple perldoc cpan epel-release
-Run yum install -y R
+RUN yum install -y perl-XML-LibXML-Common perl-XML-NamespaceSupport perl-XML-Parser perl-XML-SAX
+RUN yum install -y "perl(Compress::Zlib)" "perl(Archive::Tar)"
+RUN yum install -y perl-XML-Simple perldoc cpan epel-release
+RUN yum install -y R
 
 # Download necessary files
 ADD ${STARTFILE} /mnt/scratch/
+RUN chmod +x /mnt/scratch/start.sh
 
 #Running the start.sh script, however this can also be done using the run command for more control
 #CMD bash -C '/mnt/scratch/start.sh';'bash'
