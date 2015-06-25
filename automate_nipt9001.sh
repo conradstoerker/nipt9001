@@ -18,7 +18,7 @@ LOGPATH='/mnt/production_storage/workflows/docker'
 
 #Container and Image names
 CNAME='nipt9001'
-IMGNAME='docker.io/conradstoerker/nipt9001'
+IMGNAME='ngs-16.amdx.local:5000/wflow/nipt9001'
 
 #the first wget installs if you don't have it, the second will update your current docker
 #echo Making sure you have the latest docker package...
@@ -35,7 +35,7 @@ sudo service docker start
 
 #Needs to specify the number of cores and memory available, use -m [somenum] --cpuset="num1,num2,num3-num5"
 echo running $IMGNAME...
-sudo docker run --name ${CNAME} -d --cpuset-cpus="0-5" -v $INPUTPATH:$INPUTPATH  -v $OUTPUTPATH:$OUTPUTPATH -v $FLOWPATH:$FLOWPATH -v $DATAPATH:$DATAPATH -v $LOGPATH:$LOGPATH $IMGNAME
+sudo docker run --name ${CNAME} -d --cpuset-cpus="0-5" -v $INPUTPATH:$INPUTPATH  -v $OUTPUTPATH:$OUTPUTPATH -v $FLOWPATH:$FLOWPATH -v $DATAPATH:$DATAPATH -v $LOGPATH:$LOGPATH $IMGNAME bash /mnt/scratch/start.sh
 
 
 #echo removing the container and exiting...
