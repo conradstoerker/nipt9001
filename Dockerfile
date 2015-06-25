@@ -10,8 +10,8 @@ FROM centos:7
 # File Author / Maintainer
 MAINTAINER conrad stoerker
 
+ENV THISR http://dl.fedoraproject.org/pub/epel/7/x86_64/
 ENV STARTFILE https://raw.githubusercontent.com/conradstoerker/nipt9001/master/start.sh
-ENV AUTOFILE https://raw.githubusercontent.com/conradstoerker/nipt9001/master/automate_nipt9001.sh
 ENV FLOWZIP workflow_NIPT9001.tar.gz
 
 # Creating directories identical to the host, but only the ones we need
@@ -41,13 +41,20 @@ VOLUME /mnt/production_storage/workflows/docker
 # Update the repository sources list
 RUN yum -y update
 
-# Install tools
-RUN yum install -y  postgresql-devel telnet perl java-1.8.0-openjdk-devel git
-RUN ln -s /mnt/scratch/devel/NIPT9001 /mnt/scratch/devel/progenity_analysis-1.0
+# Link Hard Coding
+RUN ln -s /mnt/scratch/devel/NIPT9001 /mnt/scratch/progenity_analysis-1.0
+# Install Tools
+RUN yum install -y postgresql-devel telnet perl java-1.8.0-openjdk-devel git python
+RUN yum install -y gnuplot ImageMagick ghostscript libxslt libxslt-devel libxml2 libxml2-devel
+RUN yum install -y ncurses ncurses-devel gcc libtiff libtiff-devel bzip2 bzip2-devel zlib zlib-devel
+RUN yum install -y perl-XML-Dumper perl-XML-Grove perl-XML-LibXML perl-XML-LibXML-Common perl-XML-Twig
+Run yum install -y perl-XML-LibXML-Common perl-XML-NamespaceSupport perl-XML-Parser perl-XML-SAX
+Run yum install -y "perl(Compress::Zlib)" "perl(Archive::Tar)"
+Run yum install -y perl-XML-Simple perldoc cpan epel-release
+Run yum install -y R
 
-# Download the start.sh file
+# Download necessary files
 ADD ${STARTFILE} /mnt/scratch/
-ADD ${AUTOFILE} /mnt/scratch/
 
-#Running the start.sh script
-CMD bash -C '/mnt/scratch/start.sh';'bash'
+#Running the start.sh script, however this can also be done using the run command for more control
+#CMD bash -C '/mnt/scratch/start.sh';'bash'
