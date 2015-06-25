@@ -2,7 +2,7 @@
 
 DATANAME='150423_COUNT_0015_AC6V7GANXX'
 RUNFOLDERPATH='${DATALOC}'
-DATETAG=(date +%Y%m%d%S)
+DATETAG='(date +%Y%m%d%S)'
 DOCKERFLOW='/mnt/scratch/devel/NIPT9001'
 
 #ln /mnt/scratch/devel/NIPT9001 /mnt/scratch/devel/progenity_analysis-1.0
